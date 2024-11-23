@@ -58,7 +58,7 @@ export async function fetchImages(
     // Download cover images
     if (page.coverImage) {
       // Regex to get the file extension from the URL (e.g. png, jpg, jpeg, etc)
-      const fileExtension = getFileExtension(page.coverImage);
+      const fileExtension = getFileExtension(page.coverImage) ?? "jpg";
       const coverImagePath = `${pageFolderPath}/cover.${fileExtension}`;
       // Remove /public from the mediamap path so it can be used in the Next App (you don't need to include /public in the paths)
       const coverImagePathWithoutPublic = `/notion-media/${databaseId}/${pageId}/cover.${fileExtension}`;
@@ -101,7 +101,7 @@ export async function fetchImages(
       if (!url) {
         continue;
       }
-      const fileExtension = getFileExtension(url);
+      const fileExtension = getFileExtension(url) ?? "jpg";
       const blockImagePath = `${pageFolderPath}/${blockId}.${fileExtension}`;
       const blockImagePathWithoutPublic = `/notion-media/${databaseId}/${pageId}/${blockId}.${fileExtension}`;
 
